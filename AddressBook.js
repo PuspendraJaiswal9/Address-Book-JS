@@ -53,28 +53,12 @@ class AddressBook {
         console.log("Contact Added:", contact);
     }
 
-    findContactByName(name) {
-        return this.contacts.find(contact => contact.firstName === name);
+    searchByCity(city) {
+        return this.contacts.filter(contact => contact.city === city);
     }
 
-    editContact(name, updatedDetails) {
-        let contact = this.findContactByName(name);
-        if (!contact) {
-            console.log("Contact Not Found");
-            return;
-        }
-        Object.assign(contact, updatedDetails);
-        console.log("Contact Updated:", contact);
-    }
-
-    deleteContact(name) {
-        let index = this.contacts.findIndex(contact => contact.firstName === name);
-        if (index === -1) {
-            console.log("Contact Not Found");
-            return;
-        }
-        let deletedContact = this.contacts.splice(index, 1);
-        console.log("Contact Deleted:", deletedContact[0]);
+    searchByState(state) {
+        return this.contacts.filter(contact => contact.state === state);
     }
 
     getNumberOfContacts() {
@@ -89,22 +73,22 @@ class AddressBook {
 const myAddressBook = new AddressBook();
 
 try {
-    myAddressBook.addContact("Sonu", "Sharma", "123 Street", "Bhopal", "Madhya Pradesh", "462001", "1234543210", "sonu@example.com");
+    myAddressBook.addContact("Sonu", "Sharma", "123 Street", "Bhopal", "Madhya Pradesh", "462001", "5678543210", "sonu@example.com");
 } catch (error) {
     console.error(error.message);
 }
 
 try {
-    myAddressBook.addContact("Monu", "Verma", "456 Lane", "Indore", "Madhya Pradesh", "452001", "4321432109", "monu@example.com");
+    myAddressBook.addContact("Monu", "Verma", "456 Lane", "Indore", "Madhya Pradesh", "452001", "1234432109", "monu@example.com");
 } catch (error) {
     console.error(error.message);
 }
 
 try {
-    myAddressBook.addContact("Sonu", "Sharma", "789 Road", "Gwalior", "Madhya Pradesh", "474001", "6789321098", "sonu123@example.com");
+    myAddressBook.addContact("Raju", "Yadav", "789 Road", "Gwalior", "Madhya Pradesh", "474001", "4321321098", "raju@example.com");
 } catch (error) {
     console.error(error.message);
 }
 
-console.log("Total Contacts:", myAddressBook.getNumberOfContacts());
-console.log(myAddressBook.getContacts());
+console.log("Search Result (City - Bhopal):", myAddressBook.searchByCity("Bhopal"));
+console.log("Search Result (State - MP):", myAddressBook.searchByState("Madhya Pradesh"));
