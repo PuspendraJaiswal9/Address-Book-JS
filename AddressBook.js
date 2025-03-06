@@ -50,18 +50,38 @@ class AddressBook {
     }
 }
 
-const myAddressBook = new AddressBook();
+class AddressBookCollection {
+    constructor() {
+        this.addressBooks = [];
+    }
+
+    createNewAddressBook() {
+        let newBook = new AddressBook();
+        this.addressBooks.push(newBook);
+        console.log("New Address Book Created");
+        return newBook;
+    }
+
+    getAllAddressBooks() {
+        return this.addressBooks;
+    }
+}
+
+const myCollection = new AddressBookCollection();
+
+const book1 = myCollection.createNewAddressBook();
+const book2 = myCollection.createNewAddressBook();
 
 try {
-    myAddressBook.addContact("John", "Doe", "123 Street", "New York", "New India", "100001", "1234567890", "john@example.com");
+    book1.addContact("Sonu", "Monu", "456 Lane", "Los Angeles", "California", "900001", "9876543210", "sonu@example.com");
 } catch (error) {
     console.error(error.message);
 }
 
 try {
-    myAddressBook.addContact("jo", "doe", "12", "NY", "N", "123", "12345", "invalidemail");
+    book2.addContact("Sujal", "Ansh", "789 Road", "Chicago", "Illinois", "600001", "8765432109", "Sujal@example.com");
 } catch (error) {
     console.error(error.message);
 }
 
-console.log(myAddressBook.getContacts());
+console.log(myCollection.getAllAddressBooks());
