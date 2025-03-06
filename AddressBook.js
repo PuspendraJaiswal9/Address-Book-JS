@@ -21,14 +21,14 @@ class AddressBook {
         console.log("Contact Added:", newContact);
     }
 
-    viewPersonsByCity(city) {
-        let result = this.contacts.filter(contact => contact.city === city);
-        console.log(`Persons in City - ${city}:`, result);
+    countPersonsByCity(city) {
+        let count = this.contacts.filter(contact => contact.city === city).length;
+        console.log(`Number of Persons in City - ${city}: ${count}`);
     }
 
-    viewPersonsByState(state) {
-        let result = this.contacts.filter(contact => contact.state === state);
-        console.log(`Persons in State - ${state}:`, result);
+    countPersonsByState(state) {
+        let count = this.contacts.filter(contact => contact.state === state).length;
+        console.log(`Number of Persons in State - ${state}: ${count}`);
     }
 }
 
@@ -36,7 +36,8 @@ let myAddressBook = new AddressBook();
 
 myAddressBook.addContact("Sonu", "Sharma", "123 Street", "Bhopal", "Madhya Pradesh", "462001", "5678543210", "sonu@example.com");
 myAddressBook.addContact("Monu", "Verma", "456 Lane", "Indore", "Madhya Pradesh", "452001", "1234432109", "monu@example.com");
-myAddressBook.addContact("Raju", "Yadav", "789 Road", "Gwalior", "Madhya Pradesh", "474001", "4321321098", "raju@example.com");
+myAddressBook.addContact("Raju", "Yadav", "789 Road", "Bhopal", "Madhya Pradesh", "462002", "4321321098", "raju@example.com");
+myAddressBook.addContact("Amit", "Gupta", "999 Avenue", "Mumbai", "Maharashtra", "400001", "9999988888", "amit@example.com");
 
-myAddressBook.viewPersonsByCity("Bhopal");
-myAddressBook.viewPersonsByState("Madhya Pradesh");
+myAddressBook.countPersonsByCity("Bhopal");
+myAddressBook.countPersonsByState("Madhya Pradesh");
