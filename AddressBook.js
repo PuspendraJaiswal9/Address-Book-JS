@@ -69,6 +69,10 @@ class AddressBook {
         console.log("Contact Deleted:", deletedContact[0]);
     }
 
+    getNumberOfContacts() {
+        return this.contacts.length;
+    }
+
     getContacts() {
         return this.contacts;
     }
@@ -77,19 +81,19 @@ class AddressBook {
 const myAddressBook = new AddressBook();
 
 try {
-    myAddressBook.addContact("Sonu", "Sharma", "123 Street", "Bhopal", "Madhya Pradesh", "462001", "1423543210", "sonu@example.com");
+    myAddressBook.addContact("Sonu", "Sharma", "123 Street", "Bhopal", "Madhya Pradesh", "462001", "1234543210", "sonu@example.com");
 } catch (error) {
     console.error(error.message);
 }
 
 try {
-    myAddressBook.addContact("Monu", "Verma", "456 Lane", "Indore", "Madhya Pradesh", "452001", "2341432109", "monu@example.com");
+    myAddressBook.addContact("Monu", "Verma", "456 Lane", "Indore", "Madhya Pradesh", "452001", "4321432109", "monu@example.com");
 } catch (error) {
     console.error(error.message);
 }
 
-console.log(myAddressBook.getContacts());
+console.log("Total Contacts:", myAddressBook.getNumberOfContacts());
 
 myAddressBook.deleteContact("Sonu");
 
-console.log(myAddressBook.getContacts());
+console.log("Total Contacts:", myAddressBook.getNumberOfContacts());
