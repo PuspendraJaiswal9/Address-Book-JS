@@ -23,6 +23,10 @@ class AddressBook {
         return /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email);
     }
 
+    isDuplicate(firstName, lastName) {
+        return this.contacts.some(contact => contact.firstName === firstName && contact.lastName === lastName);
+    }
+
     addContact(firstName, lastName, address, city, state, zip, phone, email) {
         if (!this.isValidName(firstName) || !this.isValidName(lastName)) {
             throw new Error("First Name and Last Name should start with a capital letter and have at least 3 characters.");
@@ -38,6 +42,10 @@ class AddressBook {
         }
         if (!this.isValidEmail(email)) {
             throw new Error("Invalid email format.");
+        }
+        if (this.isDuplicate(firstName, lastName)) {
+            console.log("Duplicate Entry! Contact already exists.");
+            return;
         }
 
         let contact = { firstName, lastName, address, city, state, zip, phone, email };
@@ -92,8 +100,11 @@ try {
     console.error(error.message);
 }
 
-console.log("Total Contacts:", myAddressBook.getNumberOfContacts());
+try {
+    myAddressBook.addContact("Sonu", "Sharma", "789 Road", "Gwalior", "Madhya Pradesh", "474001", "6789321098", "sonu123@example.com");
+} catch (error) {
+    console.error(error.message);
+}
 
-myAddressBook.deleteContact("Sonu");
-
 console.log("Total Contacts:", myAddressBook.getNumberOfContacts());
+console.log(myAddressBook.getContacts());
