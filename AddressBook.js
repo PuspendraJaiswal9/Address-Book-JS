@@ -45,43 +45,41 @@ class AddressBook {
         console.log("Contact Added:", contact);
     }
 
+    findContactByName(name) {
+        return this.contacts.find(contact => contact.firstName === name);
+    }
+
+    editContact(name, updatedDetails) {
+        let contact = this.findContactByName(name);
+        if (!contact) {
+            console.log("Contact Not Found");
+            return;
+        }
+        Object.assign(contact, updatedDetails);
+        console.log("Contact Updated:", contact);
+    }
+
     getContacts() {
         return this.contacts;
     }
 }
 
-class AddressBookCollection {
-    constructor() {
-        this.addressBooks = [];
-    }
-
-    createNewAddressBook() {
-        let newBook = new AddressBook();
-        this.addressBooks.push(newBook);
-        console.log("New Address Book Created");
-        return newBook;
-    }
-
-    getAllAddressBooks() {
-        return this.addressBooks;
-    }
-}
-
-const myCollection = new AddressBookCollection();
-
-const book1 = myCollection.createNewAddressBook();
-const book2 = myCollection.createNewAddressBook();
+const myAddressBook = new AddressBook();
 
 try {
-    book1.addContact("Sonu", "Monu", "456 Lane", "Los Angeles", "California", "900001", "9876543210", "sonu@example.com");
+    myAddressBook.addContact("Sonu", "Sharma", "123 Street", "Bhopal", "Madhya Pradesh", "462001", "2341567980", "sonu@example.com");
 } catch (error) {
     console.error(error.message);
 }
 
 try {
-    book2.addContact("Sujal", "Ansh", "789 Road", "Chicago", "Illinois", "600001", "8765432109", "Sujal@example.com");
+    myAddressBook.addContact("Monu", "Verma", "456 Lane", "Indore", "Madhya Pradesh", "452001", "1274848338", "monu@example.com");
 } catch (error) {
     console.error(error.message);
 }
 
-console.log(myCollection.getAllAddressBooks());
+console.log(myAddressBook.getContacts());
+
+myAddressBook.editContact("Sonu", { phone: "1355372871", city: "Gwalior" });
+
+console.log(myAddressBook.getContacts());
